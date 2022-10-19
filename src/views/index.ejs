@@ -1,0 +1,107 @@
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+        .active {
+            background-color: #04AA6D;
+        }
+    </style>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<ul>
+    <li><a class="active" href="/">Home</a></li>
+    <li><a href="/upload">Upload file</a></li>
+</ul>
+
+<h2>Students list</h2>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+    </tr>
+    <tr>
+        <% for(let i=0; i < dataUser.length; i++) { %>
+    <tr>
+        <td>
+            <%= dataUser[i].id %>
+        </td>
+        <td>
+            <%= dataUser[i].name %>
+        </td>
+        <td>
+            <%= dataUser[i].email %>
+        </td>
+        <td>
+            <%= dataUser[i].age %>
+        </td>
+        <td style="display: flex; gap: 15px;">
+            <form>
+                <a class="btn-detail" href="/detail/user/<%= dataUser[i].id %>"
+                   target="_blank">Detail</a>
+            </form>
+            <form action="/edit-user/<%= dataUser[i].id %>" method="GET">
+                <button type="submit">Edit</button>
+            </form>
+            <form action="/delete-user" method="POST">
+                <input type="text" hidden value="<%= dataUser[i].id %>" name="userId" />
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    <% } %>
+    </tr>
+</table>
+<form action="/create-new-user", method="post">
+    <label >Name:</label><br>
+    <input type="text" name="name" ><br>
+    <label >Email:</label><br>
+    <input type="email" name="email" ><br>
+    <label >Age:</label><br>
+    <input type="text" name="age"><br><br>
+    <input type="submit" value="Submit">
+</form>
+
+<img src="/download.png">
+</body>
+</html>
+

@@ -1,0 +1,10 @@
+<form action="/update-user", method="post">
+    <input type="text" name="id" hidden value="<%= dataUser.id %>" >
+    <label >Name:</label><br>
+    <input type="text" name="name" value="<%= dataUser.name %>" ><br>
+    <label >Email:</label><br>
+    <input type="email" value="<%= dataUser.email %>" name="email" ><br>
+    <label >Age:</label><br>
+    <input type="text" value="<%= dataUser.age %>" name="age"><br><br>
+    <input type="submit" value="Submit">
+</form>
